@@ -4,8 +4,13 @@ import './auth/user.js';
 // Part A: import create todo
 // Part B: import get todos
 // Part C: import complete todo
-import { createTodo, getTodos, completeTodo } from './fetch-utils.js';
-// Part D: import delete all function
+// Part D: import delete all todos function
+import {
+    createTodo,
+    getTodos,
+    completeTodo,
+    deleteAllTodos,
+} from './fetch-utils.js';
 import { renderTodo } from './render-utils.js';
 
 /* Get DOM Elements */
@@ -59,13 +64,14 @@ addTodoForm.addEventListener('submit', async (e) => {
 
 removeButton.addEventListener('click', async () => {
     // > Part D: Call the async supabase function to delete all todos
-    const response = null; // change me
+    const response = await deleteAllTodos();
     error = response.error;
 
     if (error) {
         displayError();
     } else {
         // > Part D: reset todos state to an empty array:
+        todos = [];
 
         displayTodos();
     }
